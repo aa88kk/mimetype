@@ -69,6 +69,7 @@ func QuickTime(raw []byte, _ uint32) bool {
 	// For `ftyp` atoms check if first byte in size is 0, otherwise, a text file
 	// which happens to contain 'ftypqt  ' at index 4 will trigger a false positive.
 	if bytes.Equal(raw[4:12], []byte("ftypqt  ")) ||
+		bytes.Equal(raw[4:12], []byte("ftypXAVC")) ||
 		bytes.Equal(raw[4:12], []byte("ftypmoov")) {
 		return raw[0] == 0x00
 	}
